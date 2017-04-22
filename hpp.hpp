@@ -4,16 +4,25 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <map>
 using namespace std;
 
 struct Sym {
 	string val;
 	Sym(string);
 	vector<Sym*> nest; void push(Sym*);
-	virtual string dump(int=0); virtual string head(); string pad(int); // dump
+	map<string,Sym*> attr;
+	virtual string dump(int=0,string="");
+	virtual string head(); string pad(int); // dump
+	virtual Sym* eval();
+	Sym* lookup(string);
 };
 
+extern Sym glob;
+
 struct Op:Sym { Op(string); string head(); };
+struct Add:Op { Add(string); Sym*eval(); };
+struct Eq:Op { Eq(string); Sym*eval(); };
 
 struct Vector:Sym { Vector(); string head(); };
 

@@ -9,6 +9,7 @@
 \[					TOC(Op,LQ)
 \]					TOC(Op,RQ)
 
-\=					TOC(Op,EQ)
+\+					TOC(Add,ADD)
+\=					TOC(Eq,EQ)
 
 [ \t\r\n]+			{}

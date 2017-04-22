@@ -4,13 +4,22 @@
 %defines %union { Sym*o; }
 %token <o> SYM				/* symbol	*/
 %token <o> LQ RQ EQ			/* [ ] =	*/
+%token <o> ADD				/* +		*/
 %type <o> ex vector
 
+%left ADD
 %right EQ
 %%
-REPL : | REPL ex { cout << $2->dump() << endl; };
-ex : SYM ;
+REPL : | REPL ex	{ cout << $2->dump() << endl;
+					  cout << "---------------------------" << endl;
+	 				  cout << $2->eval()->dump() << endl;
+					  cout << "---------------------------" << endl;
+					  cout << glob.dump() << endl;
+					  cout << "======================================" << endl;
+					}
+ex : SYM
+ex : ex ADD ex		{ $$=$2; $$->push($1); $$->push($3); }
+ex : ex EQ ex		{ $$=$2; $$->push($1); $$->push($3); }
 ex : LQ vector RQ	{ $$=$2; }
 vector : 			{ $$=new Vector(); }
-	| vector ex		{ $$=$1; $$->push($2); } ;
-ex : ex EQ ex		{ $$=$2; $$->push($1); $$->push($3); }
+	| vector ex		{ $$=$1; $$->push($2); }

@@ -1,18 +1,7 @@
 # comment
 
-files = [
-	src.src
-	log.log
-	core = [
-		ypp.ypp
-		lpp.lpp
-		hpp.hpp
-		cpp.cpp
-		Makefile
-	]
-	bat.bat
-	.gitignore
-	./exe.exe
-	parser = [ ypp.tab.cpp ypp.tab.hpp lex.yy.c ]
-]
+core	= [ ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile ]
+parser	= [ ypp.tab.cpp ypp.tab.hpp lex.yy.c ]
+derived	= [ ./exe.exe parser ]
+files	= [ src.src log.log core bat.bat .gitignore derived ]
 
