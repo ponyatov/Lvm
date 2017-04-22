@@ -7,8 +7,8 @@
 %token <o> ADD				/* +		*/
 %type <o> ex vector
 
-%left ADD
 %right EQ
+%left ADD
 %%
 REPL : | REPL ex	{ cout << $2->dump() << endl;
 					  cout << "---------------------------" << endl;

@@ -2,9 +2,11 @@
 #define _H_HPP
 
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 #include <vector>
 #include <map>
+#include <typeinfo>
 using namespace std;
 
 struct Sym {
@@ -13,18 +15,21 @@ struct Sym {
 	vector<Sym*> nest; void push(Sym*);
 	map<string,Sym*> attr;
 	virtual string dump(int=0,string="");
-	virtual string head(); string pad(int); // dump
-	virtual Sym* eval();
+	virtual string headd(); virtual string head(); string pad(int); // dump
 	Sym* lookup(string);
+	virtual Sym* eval();
+	virtual Sym* add(Sym*);
 };
 
 extern Sym glob;
 
-struct Op:Sym { Op(string); string head(); };
+struct Error:Sym { Error(string); };
+
+struct Op:Sym { Op(string); string headd(); };
 struct Add:Op { Add(string); Sym*eval(); };
 struct Eq:Op { Eq(string); Sym*eval(); };
 
-struct Vector:Sym { Vector(); string head(); };
+struct Vector:Sym { Vector(); string headd(); Sym*add(Sym*); };
 
 								// == lexer/parser interface ==
 extern int yylex();				// lexer callback

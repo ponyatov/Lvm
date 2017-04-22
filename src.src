@@ -2,6 +2,6 @@
 
 core	= [ ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile ]
 parser	= [ ypp.tab.cpp ypp.tab.hpp lex.yy.c ]
-derived	= [ ./exe.exe parser ]
-files	= [ src.src log.log core bat.bat .gitignore derived ]
+derived	= [ ./exe.exe log.log ] + parser
+files	= [ src.src ] + core + [ bat.bat .gitignore ] + derived
 
