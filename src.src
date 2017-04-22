@@ -1,0 +1,18 @@
+# comment
+
+files = [
+	src.src
+	log.log
+	core = [
+		ypp.ypp
+		lpp.lpp
+		hpp.hpp
+		cpp.cpp
+		Makefile
+	]
+	bat.bat
+	.gitignore
+	./exe.exe
+	parser = [ ypp.tab.cpp ypp.tab.hpp lex.yy.c ]
+]
+
