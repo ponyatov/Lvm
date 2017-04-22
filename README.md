@@ -1,2 +1,2 @@
-# L.vm
+# L_vm
 ### Language VM
